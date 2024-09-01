@@ -17,7 +17,8 @@ public class Escalonador {
 		}
 		
 		while(machine.areThereProcess()) {
-			machine.execute();
+			boolean flag = machine.execute();
+			if(flag) machine.verifyBlocked();
 		}
 	}
 }

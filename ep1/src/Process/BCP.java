@@ -14,6 +14,7 @@ public class BCP {
 	private int registerY;
 	private String name;
 	private int ProgramCounter;
+	private int wait;
 	
 	public BCP(List<String> textMemory, int priority, int quantum) {
 		name = textMemory.removeFirst();
@@ -27,6 +28,7 @@ public class BCP {
 		registerX = 0;
 		registerY = 0;
 		state = StateProcess.READY;
+		wait = 0;
 	}
 	
 	public int getX() {
@@ -84,6 +86,18 @@ public class BCP {
 	
 	public int getTime() {
 		return time;
+	}
+	
+	public int getWait() {
+		return wait;
+	}
+	
+	public void removeWait() {
+		wait++;
+	}
+	
+	public void restartWait() {
+		wait = 0;
 	}
 	
 	@Override
