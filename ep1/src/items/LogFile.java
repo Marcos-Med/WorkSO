@@ -10,7 +10,7 @@ public class LogFile implements Write{
 	private String filename;
 	
 	private LogFile() {
-		filename = "../output/logfile.txt";
+		filename = "src/output/logfile.txt";
 		try{
 			writer = new PrintWriter(filename);
 		}
@@ -20,6 +20,9 @@ public class LogFile implements Write{
 	}
 	
 	public static Write getInstance() {
+		if(obj == null) {
+			obj = new LogFile();
+		}
 		return obj;
 	}
 	

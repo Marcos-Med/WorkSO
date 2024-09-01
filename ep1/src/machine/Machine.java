@@ -16,6 +16,7 @@ public class Machine {
 	private Write writer;
 	private List<String> priority;
 	private int quantum;
+	private Cache<Integer> cache;
 	
 	private Machine() {
 		ListInstructions = new HashMap<>();
@@ -23,9 +24,10 @@ public class Machine {
 		ready = ReadyQueue.getInstance();
 		table = TableProcess.getInstance();
 		reader = ReaderFileOS.getInstance();
+		cache = new Cache<>();
 		try{
-			priority = reader.readFile("../programas/prioridades.txt");
-			quantum  = reader.readFile("../programas/quantum.txt").get(0).charAt(0);
+			priority = reader.readFile("src/programas/prioridades.txt");
+			quantum  = reader.readFile("src/programas/quantum.txt").get(0).charAt(0);
 			writer = LogFile.getInstance();
 		}
 		catch(IOException e) {
@@ -90,6 +92,8 @@ public class Machine {
 			process.reduceCredit();
 			process.restartTime();
 			if(process.getState() == StateProcess.READY) ready.add(process);
+			cache.addQuantum(i);
+			cache.addSwap(1);
 			return true;
 		}
 		else {
@@ -122,6 +126,18 @@ public class Machine {
 		catch(IOException e) {
 			System.out.println("Error file!");
 		}
+	}
+	
+	public List<Integer> returnQuantum(){
+		return cache.removeQuantum();
+	}
+	
+	public List<Integer> returnSwaps(){
+		return cache.removeSwap();
+	}
+	
+	public int getQuantum() {
+		return quantum;
 	}
 		
 }

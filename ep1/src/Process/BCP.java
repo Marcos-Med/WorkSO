@@ -3,7 +3,7 @@ package Process;
 import java.util.List;
 import java.util.Objects;
 
-public class BCP {
+public class BCP implements Comparable<BCP>{
 	private List<String> textMemory;
 	private StateProcess state;
 	private final int priority;
@@ -29,6 +29,11 @@ public class BCP {
 		registerY = 0;
 		state = StateProcess.READY;
 		wait = 0;
+	}
+	
+	@Override
+	public int compareTo(BCP process) {
+		return Integer.compare(this.credit, process.credit());
 	}
 	
 	public int getX() {
@@ -98,6 +103,10 @@ public class BCP {
 	
 	public void restartWait() {
 		wait = 0;
+	}
+	
+	public int credit() {
+		return this.credit;
 	}
 	
 	@Override
