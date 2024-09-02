@@ -27,12 +27,30 @@ public class Machine {
 		cache = new Cache<>();
 		try{
 			priority = reader.readFile("src/programas/prioridades.txt");
-			quantum  = reader.readFile("src/programas/quantum.txt").get(0).charAt(0);
+			quantum  = Character.getNumericValue(reader.readFile("src/programas/quantum.txt").get(0).charAt(0));
 			writer = LogFile.getInstance();
 		}
 		catch(IOException e) {
 			System.out.println("Error file");
 		}
+		
+		initInstrucions(ListInstructions);
+		
+	}
+	
+	private void initInstrucions(HashMap<String, Commands> list) {
+		list.put("X=0", Commands.ATTRIBUTION);
+		list.put("Y=0", Commands.ATTRIBUTION);
+		list.put("E/S", Commands.IO);
+		list.put("COM", Commands.COM);
+		list.put("SAIDA", Commands.EXIT);
+	}
+	
+	private Commands getID(String instruction) {
+		if((instruction.charAt(0) == 'X') || (instruction.charAt(0) == 'Y')) {
+			return ListInstructions.get("X=0");
+		}
+		return ListInstructions.get(instruction);
 	}
 	
 	public static Machine getInstance() {
@@ -52,17 +70,17 @@ public class Machine {
 		{	int i = 0;
 			while(process.getTime() > 0 && (process.getState() == StateProcess.READY)) {
 				String instruction = process.getInstruction();
-				Commands ID = ListInstructions.get(instruction);
+				Commands ID = getID(instruction);
 				process.setState(StateProcess.RUNNING);
 				if(i == 0) writer.write("Executando " + process.getName()); 
 				i++;
 				switch(ID) {
 					case Commands.ATTRIBUTION:
 						if(instruction.contains("X")) {
-							process.setX(instruction.charAt(instruction.length() - 1));
+							process.setX(Character.getNumericValue(instruction.charAt(instruction.length() - 1)));
 						}
 						else {
-							process.setY(instruction.charAt(instruction.length() - 1));
+							process.setY(Character.getNumericValue(instruction.charAt(instruction.length() - 1)));
 						}
 						process.setState(StateProcess.READY);
 						break;
@@ -71,10 +89,10 @@ public class Machine {
 						blocked.add(process);
 						writer.write("E/S iniciada em " + process.getName());
 						if(i == 1) {
-							writer.write("Interropendo " + process.getName() + " após " + i + " instrução (havia apenas a E/S");
+							writer.write("Interrompendo " + process.getName() + " após " + i + " instrução (havia apenas a E/S)");
 						}
 						else {
-							writer.write("Interropendo " + process.getName() + " após " + i + " instruções (" + (i - 1) + " comandos antes da E/S");
+							writer.write("Interrompendo " + process.getName() + " após " + i + " instruções (" + (i - 1) + " comandos antes da E/S)");
 						}
 						break;
 					case Commands.COM:
@@ -138,6 +156,10 @@ public class Machine {
 	
 	public int getQuantum() {
 		return quantum;
+	}
+	
+	public void exit() {
+		writer.close();
 	}
 		
 }

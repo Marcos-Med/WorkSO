@@ -2,6 +2,7 @@ package items;
 
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.io.FileWriter;
 
 public class LogFile implements Write{
 	
@@ -12,7 +13,8 @@ public class LogFile implements Write{
 	private LogFile() {
 		filename = "src/output/logfile.txt";
 		try{
-			writer = new PrintWriter(filename);
+			FileWriter filewriter = new FileWriter(filename, true);
+			writer = new PrintWriter(filewriter);
 		}
 		catch(IOException e) {
 			System.out.println("Error file");
@@ -24,6 +26,10 @@ public class LogFile implements Write{
 			obj = new LogFile();
 		}
 		return obj;
+	}
+	
+	public void close() {
+		writer.close();
 	}
 	
 	

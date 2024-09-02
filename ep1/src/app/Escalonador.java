@@ -32,5 +32,6 @@ public class Escalonador {
 		file.write("MEDIA DE TROCAS: " + averageQuantum);
 		file.write("MEDIA DE INSTRUCOES: " + averageSwaps);
 		file.write("QUANTUM: " + machine.getQuantum());
-	}
+		machine.exit();	
+		}
 }
