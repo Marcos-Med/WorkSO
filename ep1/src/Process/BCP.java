@@ -27,7 +27,7 @@ public class BCP implements Comparable<BCP>{
 		registerX = 0;
 		registerY = 0;
 		state = StateProcess.READY;
-		wait = 0;
+		wait = 2;
 	}
 	
 	@Override
@@ -76,8 +76,9 @@ public class BCP implements Comparable<BCP>{
 	}
 	
 	public String getInstruction() {
+		String instruction = textMemory.get(ProgramCounter);
 		nextInstruction();
-		return textMemory.get(ProgramCounter);
+		return instruction;
 	}
 	
 	public void reduceTime() {

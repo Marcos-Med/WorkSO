@@ -81,11 +81,15 @@ public class Machine {
 				i++;
 				switch(ID) {
 					case Commands.ATTRIBUTION:
+						String number = "";
+						for(int j = 2; j < instruction.length(); j++) {
+							number += instruction.charAt(j);
+						}
 						if(instruction.contains("X")) {
-							process.setX(Character.getNumericValue(instruction.charAt(instruction.length() - 1)));
+							process.setX(Integer.parseInt(number));
 						}
 						else {
-							process.setY(Character.getNumericValue(instruction.charAt(instruction.length() - 1)));
+							process.setY(Integer.parseInt(number));
 						}
 						process.setState(StateProcess.READY);
 						break;
@@ -132,6 +136,7 @@ public class Machine {
 			p.removeWait();
 			if(p.getWait() == 0) {
 				p.setState(StateProcess.READY);
+				p.restartWait();
 				ready.add(p);
 			}
 			else {
