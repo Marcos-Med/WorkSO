@@ -2,7 +2,7 @@ package statics;
 
 import java.util.List;
 
-public class Statiscs {
+public class Statiscs { //Classe que realiza cálculos estatísticos
 	private static Statiscs obj;
 	private String type;
 	
@@ -10,7 +10,7 @@ public class Statiscs {
 		type = "math";
 	}
 	
-	public static Statiscs getInstance() {
+	public static Statiscs getInstance() { //Design Patterns Siglenton
 		if(obj == null) {
 			obj = new Statiscs();
 		}
@@ -22,7 +22,7 @@ public class Statiscs {
 		return type;
 	}
 	
-	public double sum(List<Integer> numbers) {
+	public double sum(List<Integer> numbers) { //somátorio
 		double a = 0;
 		for(int e: numbers) {
 			a += e;

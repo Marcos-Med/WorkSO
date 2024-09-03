@@ -149,6 +149,6 @@ E/S iniciada em TESTE-1
 Interrompendo TESTE-1 após 1 instrução (havia apenas a E/S)
 Executando TESTE-1
 TESTE-1 terminado. X=2. Y=10
-MEDIA DE TROCAS: 13.9
-MEDIA DE INSTRUCOES: 5.9
+MEDIA DE TROCAS: 5.9
+MEDIA DE INSTRUCOES: 13.9
 QUANTUM: 3

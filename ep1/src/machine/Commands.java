@@ -1,6 +1,6 @@
 package machine;
 
-public enum Commands {
+public enum Commands { //Comandos realizados pela máquina
 	ATTRIBUTION,
 	IO,
 	COM,

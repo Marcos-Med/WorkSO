@@ -1,6 +1,6 @@
 package Process;
 
-public enum StateProcess {
+public enum StateProcess { //Estados que os processos podem assumir
 	RUNNING,
 	READY,
 	BLOCKED,

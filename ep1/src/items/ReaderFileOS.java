@@ -6,7 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.FileReader;
 
-public class ReaderFileOS implements Reader {
+public class ReaderFileOS implements Reader { //Leitor de arquivos utilizados pelo escalonador
 	private static ReaderFileOS obj;
 	private String type;
 	
@@ -14,7 +14,7 @@ public class ReaderFileOS implements Reader {
 		type = "FileOS";
 	}
 	
-	public static Reader getInstance() {
+	public static Reader getInstance() { //Design Patterns Siglenton
 		if(obj == null) {
 			obj = new ReaderFileOS();
 		}
@@ -25,7 +25,7 @@ public class ReaderFileOS implements Reader {
 		return type;
 	}
 	
-	public List<String> readFile(String name) throws IOException{
+	public List<String> readFile(String name) throws IOException{ // Realiza a leitura do arquivo e devolve uma lista contendo as linhas
 		List<String> listFiles = new ArrayList<>();
 		BufferedReader br = new BufferedReader(new FileReader(name));
 		String line;

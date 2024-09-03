@@ -2,15 +2,15 @@ package Process;
 
 import java.util.HashSet;
 
-public class TableProcess {
+public class TableProcess { // Tabela de processos
 	private static TableProcess obj;
-	private HashSet<BCP> table;
+	private HashSet<BCP> table; //Tabela suporta processos distintos apenas
 	
 	private TableProcess() {
 		table = new HashSet<>();
 	}
 	
-	public static TableProcess getInstance() {
+	public static TableProcess getInstance() {//Design Patterns Siglenton
 		if(obj == null) {
 			obj = new TableProcess();
 		}
@@ -18,11 +18,11 @@ public class TableProcess {
 		return obj;
 	}
 	
-	public void add(BCP process) {
+	public void add(BCP process) { //Adiciona processo na tabela
 		table.add(process);
 	}
 	
-	public void remove(BCP process) {
+	public void remove(BCP process) { // Mata o processo
 		try{
 			table.remove(process);
 		}

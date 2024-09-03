@@ -3,18 +3,18 @@ package Process;
 import java.util.List;
 import java.util.Objects;
 
-public class BCP implements Comparable<BCP>{
-	private List<String> textMemory;
-	private StateProcess state;
-	private final int priority;
-	private int credit;
-	private final int quantum;
-	private int time;
-	private int registerX;
-	private int registerY;
-	private String name;
-	private int ProgramCounter;
-	private int wait;
+public class BCP implements Comparable<BCP>{ //Bloco de Controle do Processo
+	private List<String> textMemory; //Programa
+	private StateProcess state; //Estado do processo
+	private final int priority; //Prioridade do processo
+	private int credit; // Créditos atual do processo
+	private final int quantum; // quantum de execução
+	private int time; // tempo atual
+	private int registerX; // Registrador X
+	private int registerY; // Registrado Y
+	private String name; //Nome do programa
+	private int ProgramCounter; // PC
+	private int wait; //tempo de aguardo no estado bloqueado
 	
 	public BCP(List<String> textMemory, int priority, int quantum) {
 		name = textMemory.removeFirst();
@@ -31,7 +31,7 @@ public class BCP implements Comparable<BCP>{
 	}
 	
 	@Override
-	public int compareTo(BCP process) {
+	public int compareTo(BCP process) { //Critério de ordenação
 		return Integer.compare(this.credit, process.credit());
 	}
 	
@@ -67,21 +67,21 @@ public class BCP implements Comparable<BCP>{
 		credit = priority;
 	}
 	
-	public void reduceCredit() {
+	public void reduceCredit() { //Reduz os créditos
 		if (credit > 0) credit--;
 	}
 	
-	private void nextInstruction() {
+	private void nextInstruction() { //Incrementa o Program Counter
 		if(ProgramCounter < 21) ProgramCounter++;
 	}
 	
-	public String getInstruction() {
+	public String getInstruction() { //Pega a próxima instrução
 		String instruction = textMemory.get(ProgramCounter);
 		nextInstruction();
 		return instruction;
 	}
 	
-	public void reduceTime() {
+	public void reduceTime() { //reduz o tempo de execução
 		if(time > 0) time--;
 	}
 	
@@ -97,7 +97,7 @@ public class BCP implements Comparable<BCP>{
 		return wait;
 	}
 	
-	public void removeWait() {
+	public void removeWait() { //reduz o tempo de espera
 		wait--;
 	}
 	
@@ -105,17 +105,17 @@ public class BCP implements Comparable<BCP>{
 		wait = 2;
 	}
 	
-	public int credit() {
+	public int credit() { // retorna os creditos atuais
 		return this.credit;
 	}
 	
 	@Override
-	public int hashCode() {
+	public int hashCode() { // Localização na tabela hash
 		return Objects.hash(name);
 	}
 	
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj) { //Critério de igualdade
 		return this == obj;
 	}
 }
