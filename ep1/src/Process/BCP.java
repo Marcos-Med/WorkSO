@@ -18,7 +18,6 @@ public class BCP implements Comparable<BCP>{
 	
 	public BCP(List<String> textMemory, int priority, int quantum) {
 		name = textMemory.removeFirst();
-		textMemory.remove(0);
 		this.textMemory = textMemory;
 		this.priority = priority;
 		this.quantum = quantum;
@@ -98,11 +97,11 @@ public class BCP implements Comparable<BCP>{
 	}
 	
 	public void removeWait() {
-		wait++;
+		wait--;
 	}
 	
 	public void restartWait() {
-		wait = 0;
+		wait = 2;
 	}
 	
 	public int credit() {

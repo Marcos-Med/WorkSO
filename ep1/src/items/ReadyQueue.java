@@ -3,13 +3,14 @@ package items;
 import java.util.Queue;
 import java.util.PriorityQueue;
 import Process.BCP;
+import java.util.Collections;
 
 public class ReadyQueue implements QueueAPP {
 	private Queue<BCP> queue;
 	private static QueueAPP obj;
 	
 	private ReadyQueue() {
-		queue = new PriorityQueue<>();
+		queue = new PriorityQueue<>(Collections.reverseOrder());
 	}
 	
 	public static QueueAPP getInstance() {

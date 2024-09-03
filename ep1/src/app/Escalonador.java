@@ -20,9 +20,13 @@ public class Escalonador {
 			machine.loadProcess(name, i);
 		}
 		
+		machine.printLoading();
+		
 		while(machine.areThereProcess()) {
 			boolean flag = machine.execute();
-			if(flag) machine.verifyBlocked();
+			machine.verifyBlocked();
+			if(machine.isZeroPriority()) machine.creditRedistribution();
+			System.out.println(flag);
 		}
 		
 		Statiscs math = Statiscs.getInstance();
@@ -32,6 +36,7 @@ public class Escalonador {
 		file.write("MEDIA DE TROCAS: " + averageQuantum);
 		file.write("MEDIA DE INSTRUCOES: " + averageSwaps);
 		file.write("QUANTUM: " + machine.getQuantum());
-		machine.exit();	
+		machine.exit();
+		System.out.println("End");
 		}
 }

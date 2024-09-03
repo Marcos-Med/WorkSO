@@ -4,7 +4,11 @@ import Process.*;
 import java.util.HashMap;
 import items.*;
 import java.util.List;
+import java.util.Queue;
+import java.util.PriorityQueue;
+import java.util.LinkedList;
 import java.io.IOException;
+import java.util.Collections;
 
 public class Machine {
 	private static Machine obj; 
@@ -27,7 +31,7 @@ public class Machine {
 		cache = new Cache<>();
 		try{
 			priority = reader.readFile("src/programas/prioridades.txt");
-			quantum  = Character.getNumericValue(reader.readFile("src/programas/quantum.txt").get(0).charAt(0));
+			quantum  = Integer.parseInt(reader.readFile("src/programas/quantum.txt").get(0));
 			writer = LogFile.getInstance();
 		}
 		catch(IOException e) {
@@ -68,6 +72,7 @@ public class Machine {
 		BCP process = ready.pick();
 		if(process != null)
 		{	int i = 0;
+			boolean flagID = true;
 			while(process.getTime() > 0 && (process.getState() == StateProcess.READY)) {
 				String instruction = process.getInstruction();
 				Commands ID = getID(instruction);
@@ -94,6 +99,7 @@ public class Machine {
 						else {
 							writer.write("Interrompendo " + process.getName() + " após " + i + " instruções (" + (i - 1) + " comandos antes da E/S)");
 						}
+						flagID = false;
 						break;
 					case Commands.COM:
 						process.setState(StateProcess.READY);
@@ -102,6 +108,7 @@ public class Machine {
 						process.setState(StateProcess.FINISHED);
 						writer.write(process.getName() + " terminado. X=" + process.getX() + ". Y=" + process.getY());
 						table.remove(process);
+						flagID = false;
 						break;
 				}
 				process.reduceTime();
@@ -109,40 +116,84 @@ public class Machine {
 			}
 			process.reduceCredit();
 			process.restartTime();
+			if(flagID) writer.write("Interrompendo " + process.getName() + " após " + i + " instruções");
 			if(process.getState() == StateProcess.READY) ready.add(process);
 			cache.addQuantum(i);
 			cache.addSwap(1);
 			return true;
 		}
-		else {
-			BCP p;
-			while((p = blocked.pick()) != null) {
-				p.setState(StateProcess.READY);
-				p.restartWait();
-				ready.add(p);
-			}
-			return false;
-		}
+		return false;
 	}
 	
 	public void verifyBlocked() {
 		BCP p;
+		Queue<BCP> queue = new LinkedList<>();
 		while((p = blocked.pick()) != null) {
 			p.removeWait();
+			if(p.getWait() == 0) {
+				p.setState(StateProcess.READY);
+				ready.add(p);
+			}
+			else {
+				queue.add(p);
+			}
+		}
+		for(BCP pr: queue) {
+			blocked.add(pr);
+		}
+	}
+	
+	public boolean isZeroPriority() {
+		boolean flag = true;
+		Queue<BCP> queue = new PriorityQueue<>(Collections.reverseOrder());
+		while(ready.areThereProcess()) {
+			BCP p = ready.pick();
+			queue.add(p);
+			if(p.credit() != 0) {
+				flag = false;
+				break;
+			}
+		}
+		for(BCP process: queue) {
+			ready.add(process);
+		}
+		return flag;
+	}
+	
+	public void creditRedistribution() {
+		Queue<BCP> queue = new PriorityQueue<>(Collections.reverseOrder());
+		while(ready.areThereProcess()) {
+			BCP p = ready.pick();
+			p.restart();
+			queue.add(p);
+		}
+		for(BCP process: queue) {
+			ready.add(process);
 		}
 	}
 	
 	public void loadProcess(String name, int number) {
 		try{
 			List<String> list = reader.readFile(name);
-			int p = priority.get(number - 1).charAt(0);
+			int p = Integer.parseInt(priority.get(number - 1));
 			BCP process = new BCP(list, p, quantum);
 			table.add(process);
 			ready.add(process);
-			writer.write("Carregando " + process.getName());
 		}
 		catch(IOException e) {
 			System.out.println("Error file!");
+		}
+	}
+	
+	public void printLoading() {
+		Queue<BCP> queue = new PriorityQueue<>(Collections.reverseOrder());
+		while(ready.areThereProcess()) {
+			BCP p = ready.pick();
+			writer.write("Carregando " + p.getName());
+			queue.add(p);
+		}
+		for(BCP process: queue) {
+			ready.add(process);
 		}
 	}
 	
