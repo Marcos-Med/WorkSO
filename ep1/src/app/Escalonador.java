@@ -24,7 +24,6 @@ public class Escalonador {
 		
 		while(machine.areThereProcess()) {
 			machine.execute();
-			machine.verifyBlocked();
 			if(machine.isZeroPriority()) machine.creditRedistribution();
 		}
 		

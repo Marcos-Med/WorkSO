@@ -1,10 +1,44 @@
-7
-4
-8
-9
-6
-5
-10
-2
-3
-1
+Carregando TESTE-7
+Carregando TESTE-4
+Carregando TESTE-8
+Carregando TESTE-9
+Carregando TESTE-6
+Carregando TESTE-5
+Carregando TESTE-10
+Carregando TESTE-2
+Carregando TESTE-3
+Carregando TESTE-1
+Executando TESTE-7
+Interrompendo TESTE-7 após 3 instruções
+Executando TESTE-7
+E/S iniciada em TESTE-7
+Interrompendo TESTE-7 após 1 instrução (havia apenas E/S)
+Executando TESTE-4
+E/S iniciada em TESTE-4
+Interrompendo TESTE-4 após 2 instruções (havia um comando antes da E/S)
+Executando TESTE-8
+Interrompendo TESTE-8 após 3 instruções
+Executando TESTE-7
+Interrompendo TESTE-7 após 3 instruções
+Executando TESTE-7 
+Interrompendo TESTE-7 após 3 instruções
+Executando TESTE-4
+E/S iniciada em TESTE-4
+Interrompendo TESTE-4 após 2 instruções (havia um comando antes da E/S)
+Executando TESTE-7
+E/S iniciada em TESTE-7
+Interrompendo TESTE-7 após 3 instruções (havia dois comando antes da E/S)
+Executando TESTE-9
+E/S iniciada em TESTE-9
+Interrompendo TESTE-9 após 3 instruções (havia dois comando antes da E/S)
+Executando TESTE-4
+E/S iniciada em TESTE-4
+Interrompendo TESTE-4 após 2 instruções (havia um comando antes da E/S)
+Executando TESTE-7
+TESTE-7 terminado. X=12. Y=3
+Executando TESTE-9
+Interrompendo TESTE-9 após 3 instruções
+Executando TESTE-4
+Interrompendo TESTE-4 após 2 instruções (havia um comando antes da E/S)
+Executando TESTE-8
+Interrompendo TESTE-8 após 3 instruções

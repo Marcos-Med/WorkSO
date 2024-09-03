@@ -68,8 +68,9 @@ public class Machine {
 		return ready.areThereProcess() || blocked.areThereProcess();
 	}
 	
-	public boolean execute() {
+	public void execute() {
 		BCP process = ready.pick();
+		verifyBlocked();
 		if(process != null)
 		{	int i = 0;
 			boolean flagID = true;
@@ -101,7 +102,8 @@ public class Machine {
 							writer.write("Interrompendo " + process.getName() + " após " + i + " instrução (havia apenas a E/S)");
 						}
 						else {
-							writer.write("Interrompendo " + process.getName() + " após " + i + " instruções (" + (i - 1) + " comandos antes da E/S)");
+							if(i-1 == 1) writer.write("Interrompendo " + process.getName() + " após " + i + " instruções (" + (i - 1) + " comando antes da E/S)");
+							else writer.write("Interrompendo " + process.getName() + " após " + i + " instruções (" + (i - 1) + " comandos antes da E/S)");
 						}
 						flagID = false;
 						break;
@@ -124,9 +126,8 @@ public class Machine {
 			if(process.getState() == StateProcess.READY) ready.add(process);
 			cache.addQuantum(i);
 			cache.addSwap(1);
-			return true;
+		
 		}
-		return false;
 	}
 	
 	public void verifyBlocked() {
