@@ -23,10 +23,9 @@ public class Escalonador {
 		machine.printLoading();
 		
 		while(machine.areThereProcess()) {
-			boolean flag = machine.execute();
+			machine.execute();
 			machine.verifyBlocked();
 			if(machine.isZeroPriority()) machine.creditRedistribution();
-			//System.out.println(flag);
 		}
 		
 		Statiscs math = Statiscs.getInstance();
