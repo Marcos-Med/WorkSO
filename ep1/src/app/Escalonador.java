@@ -30,8 +30,9 @@ public class Escalonador {
 		
 		Statiscs math = Statiscs.getInstance();
 		Write file = LogFile.getInstance();
-		double averageQuantum = (double) math.sum(machine.returnQuantum())/nProcess;
-		double averageSwaps = (double) math.sum(machine.returnSwaps())/nProcess;
+		double q = math.sum(machine.returnSwaps());
+		double averageQuantum = (double) math.sum(machine.returnQuantum())/q;
+		double averageSwaps = (double) q /nProcess;
 		file.write("MEDIA DE TROCAS: " + averageSwaps);
 		file.write("MEDIA DE INSTRUCOES: " + averageQuantum);
 		file.write("QUANTUM: " + machine.getQuantum());
