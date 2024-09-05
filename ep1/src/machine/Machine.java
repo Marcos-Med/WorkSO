@@ -99,11 +99,10 @@ public class Machine { //Classe que representa a máquina que executa os process
 						blocked.add(process);
 						writer.write("E/S iniciada em " + process.getName());
 						if(i == 1) {
-							writer.write("Interrompendo " + process.getName() + " após " + i + " instrução (havia apenas a E/S)");
+							writer.write("Interrompendo " + process.getName() + " após " + i + " instrução");
 						}
 						else {
-							if(i-1 == 1) writer.write("Interrompendo " + process.getName() + " após " + i + " instruções (" + (i - 1) + " comando antes da E/S)");
-							else writer.write("Interrompendo " + process.getName() + " após " + i + " instruções (" + (i - 1) + " comandos antes da E/S)");
+							writer.write("Interrompendo " + process.getName() + " após " + i + " instruções");
 						}
 						flagID = false;
 						break;
