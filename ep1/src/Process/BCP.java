@@ -17,7 +17,7 @@ public class BCP implements Comparable<BCP>{ //Bloco de Controle do Processo
 	private int wait; //tempo de aguardo no estado bloqueado
 	
 	public BCP(List<String> textMemory, int priority, int quantum) {
-		name = textMemory.removeFirst();
+		if(textMemory != null) name = textMemory.removeFirst();
 		this.textMemory = textMemory;
 		this.priority = priority;
 		this.quantum = quantum;

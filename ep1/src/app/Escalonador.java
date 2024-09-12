@@ -20,9 +20,7 @@ public class Escalonador {
 			}
 			machine.loadProcess(name, i);
 		}
-		
 		machine.printLoading(); //Imprime o estado da fila de prontos
-		
 		while(machine.areThereProcess()) { //Ciclo de execução
 			machine.execute();
 			if(machine.isZeroPriority()) machine.creditRedistribution(); //Redistribuição dos créditos

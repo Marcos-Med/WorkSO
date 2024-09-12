@@ -5,10 +5,9 @@ import java.util.HashMap;
 import items.*;
 import java.util.List;
 import java.util.Queue;
-import java.util.PriorityQueue;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.io.IOException;
-import java.util.Collections;
 
 public class Machine { //Classe que representa a máquina que executa os processos
 	private static Machine obj; 
@@ -125,7 +124,7 @@ public class Machine { //Classe que representa a máquina que executa os process
 			if(process.getState() == StateProcess.READY) ready.add(process); //Adiciona na fila de prontos se o processo não foi bloqueado
 			cache.addQuantum(i); //Adiciona a quantidade de instruções executadas
 			cache.addSwap(1); //Insera a troca de processo
-		
+			System.out.println("Yes");
 		}
 	}
 	
@@ -150,7 +149,7 @@ public class Machine { //Classe que representa a máquina que executa os process
 	
 	public boolean isZeroPriority() { //Verifica se todos os processos têm créditos nulos 
 		boolean flag = true;
-		Queue<BCP> queue = new PriorityQueue<>(Collections.reverseOrder());
+		List<BCP> queue = new ArrayList<>();
 		while(ready.areThereProcess()) {
 			BCP p = ready.pick();
 			queue.add(p);
@@ -166,7 +165,7 @@ public class Machine { //Classe que representa a máquina que executa os process
 	}
 	
 	public void creditRedistribution() { //Redistribui os créditos caso os créditos atuais são nulos
-		Queue<BCP> queue = new PriorityQueue<>(Collections.reverseOrder());
+		List<BCP> queue = new ArrayList<>();
 		while(ready.areThereProcess()) {
 			BCP p = ready.pick();
 			p.restart();
@@ -191,7 +190,7 @@ public class Machine { //Classe que representa a máquina que executa os process
 	}
 	
 	public void printLoading() { //Imprime o estado da fila de prontos
-		Queue<BCP> queue = new PriorityQueue<>(Collections.reverseOrder());
+		List<BCP> queue = new ArrayList<>();
 		while(ready.areThereProcess()) {
 			BCP p = ready.pick();
 			writer.write("Carregando " + p.getName());

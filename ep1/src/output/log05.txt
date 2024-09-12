@@ -1,10 +1,10 @@
 Carregando TESTE-7
 Carregando TESTE-4
-Carregando TESTE-8
 Carregando TESTE-9
+Carregando TESTE-8
 Carregando TESTE-6
-Carregando TESTE-5
 Carregando TESTE-10
+Carregando TESTE-5
 Carregando TESTE-2
 Carregando TESTE-3
 Carregando TESTE-1
@@ -58,27 +58,27 @@ Executando TESTE-6
 Interrompendo TESTE-6 após 5 instruções
 Executando TESTE-8
 Interrompendo TESTE-8 após 5 instruções
+Executando TESTE-8
+TESTE-8 terminado. X=1. Y=3
 Executando TESTE-6
 E/S iniciada em TESTE-6
 Interrompendo TESTE-6 após 2 instruções
 Executando TESTE-9
 TESTE-9 terminado. X=0. Y=0
+Executando TESTE-5
+E/S iniciada em TESTE-5
+Interrompendo TESTE-5 após 2 instruções
 Executando TESTE-10
 E/S iniciada em TESTE-10
 Interrompendo TESTE-10 após 5 instruções
-Executando TESTE-5
-E/S iniciada em TESTE-5
-Interrompendo TESTE-5 após 2 instruções
-Executando TESTE-8
-TESTE-8 terminado. X=1. Y=3
-Executando TESTE-10
-TESTE-10 terminado. X=0. Y=0
-Executando TESTE-5
-E/S iniciada em TESTE-5
-Interrompendo TESTE-5 após 2 instruções
 Executando TESTE-6
 E/S iniciada em TESTE-6
 Interrompendo TESTE-6 após 3 instruções
+Executando TESTE-5
+E/S iniciada em TESTE-5
+Interrompendo TESTE-5 após 2 instruções
+Executando TESTE-10
+TESTE-10 terminado. X=0. Y=0
 Executando TESTE-2
 E/S iniciada em TESTE-2
 Interrompendo TESTE-2 após 5 instruções
@@ -94,27 +94,27 @@ Executando TESTE-3
 Interrompendo TESTE-3 após 5 instruções
 Executando TESTE-3
 Interrompendo TESTE-3 após 5 instruções
-Executando TESTE-1
-E/S iniciada em TESTE-1
-Interrompendo TESTE-1 após 5 instruções
 Executando TESTE-2
 E/S iniciada em TESTE-2
 Interrompendo TESTE-2 após 5 instruções
 Executando TESTE-5
 E/S iniciada em TESTE-5
 Interrompendo TESTE-5 após 2 instruções
-Executando TESTE-3
-TESTE-3 terminado. X=4. Y=10
 Executando TESTE-1
 E/S iniciada em TESTE-1
-Interrompendo TESTE-1 após 4 instruções
-Executando TESTE-5
-E/S iniciada em TESTE-5
-Interrompendo TESTE-5 após 2 instruções
+Interrompendo TESTE-1 após 5 instruções
 Executando TESTE-2
 Interrompendo TESTE-2 após 5 instruções
 Executando TESTE-2
 TESTE-2 terminado. X=9. Y=1
+Executando TESTE-3
+TESTE-3 terminado. X=4. Y=10
+Executando TESTE-5
+E/S iniciada em TESTE-5
+Interrompendo TESTE-5 após 2 instruções
+Executando TESTE-1
+E/S iniciada em TESTE-1
+Interrompendo TESTE-1 após 4 instruções
 Executando TESTE-5
 TESTE-5 terminado. X=8. Y=5
 Executando TESTE-1
